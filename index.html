@@ -1,2 +1,28 @@
-<H1>COUCOU</H1>
-<H2>Every body</H2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenStory 2022</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <script>
+        //https://genstory.jardindesconnaissances.fr/files/original/37b3d9d6ec75150e989d6bae2760a217662ecb45.json
+        d3.json("scenario.json").then((data) => {
+          console.log(data);
+          /*
+          data.layers.forEach(l => {
+              console.log(l.name);
+          });
+          */
+        let layers = d3.select('body').data(data.layers).enter()
+            .append('div').text(l=>l.name);
+        layers.selectAll('H1').data(l=>l.values).enter().append('H1').text(v=>v.text);
+        });
+        
+    </script>
+    
+</body>
+</html>
